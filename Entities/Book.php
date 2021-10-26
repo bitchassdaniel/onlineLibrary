@@ -11,6 +11,10 @@ class Book
     private int $pages;
     private string $date;
 
+    /**
+     * @param $author
+     * @param $title
+     */
     public function __construct($author, $title) {
         $this->author = $author;
         $this->title = $title;
@@ -111,7 +115,4 @@ class Book
     {
         $this->date = $date;
     }
-
-
-
 }
