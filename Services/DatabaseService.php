@@ -8,7 +8,7 @@ use PDOException;
 class DatabaseService
 {
     private $host = "localhost";
-    private $dbname = "T.B.D";
+    private $dbname = "onlineLibrary";
     private $username = "root";
     private $password = "";
     private $conn;
