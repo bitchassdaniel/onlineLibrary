@@ -25,19 +25,49 @@ class BookService
         $stmt->bindParam(':title', $book->getTitle());
         $stmt->bindParam(':description', $book->getDescription());
         $stmt->bindParam(':pages', $book->getPages());
-        $stmt->bindParam(':date', $book->getPages());
+        $stmt->bindParam(':date', $book->getDate());
         $stmt->execute();
 
+        $conn->disconnect();
         return true; // Finish sequence to add book to database.
     }
 
-    public function delete()
+    public function delete(array $data)
     {
+        $conn = new DatabaseService();
+        $connection = $conn->connect();
 
+        $book = new Book($data['author'], $data['title']);
+        $book->setAuthor($data['author']);
+        $book->setTitle($data['title']);
+
+        $stmt = $conn->prepare("DELETE FROM books WHERE author = :author AND title = :title");
+        $stmt->bindParam(':author', $book->getAuthor());
+        $stmt->bindParam(':title', $book->getTitle());
+        $stmt->execute();
+
+        $conn->disconnect();
+        return true;
     }
 
-    public function edit()
+    public function edit(array $data)
     {
+        $conn = new DatabaseService();
+        $connection = $conn->connect();
+
+        $book = new Book($data['author'], $data['title']);
+        $book->setDescription($data['description']);
+        $book->setPages($data['pages']);
+        $book->setDate($data['date']);
+        $book->setAuthor($data['author']);
+        $book->setTitle($data['title']);
+
+        $stmt = $conn->prepare("UPDATE books SET "); // Find way to get id from book in database. ;-;
+        // :)
+
+        $conn->disconnect();
+        return true;
+
 
     }
 
