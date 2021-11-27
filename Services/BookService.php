@@ -16,6 +16,8 @@ class BookService
         $book->setDescription($_POST['description']);
         $book->setPages($_POST['pages']);
         $book->setDate($_POST['date']);
+        $book->setAuthor($_POST['author']);
+        $book->setTitle($_POST['title']);
 
         $stmt = $conn->prepare("INSERT INTO books (author, title, description, pages, date) VALUES (:author, :title, :description, :pages, :date)");
 
@@ -24,13 +26,7 @@ class BookService
         $stmt->bindParam(':description', $book->getDescription());
         $stmt->bindParam(':pages', $book->getPages());
         $stmt->bindParam(':date', $book->getPages());
-
-
-
-
-
-
-
+        $stmt->execute();
 
         return true; // Finish sequence to add book to database.
     }
