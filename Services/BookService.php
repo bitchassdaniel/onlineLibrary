@@ -2,6 +2,8 @@
 
 namespace Services;
 
+use Entities\Book;
+
 include "Entities\Book.php";
 class BookService
 {
@@ -9,6 +11,15 @@ class BookService
     {
         $conn = new DatabaseService();
         $connection = $conn->connect();
+
+        $book = new Book($data['author'], $data['title']);
+        $book->setDescription($_POST['description']);
+        $book->setPages($_POST['pages']);
+        $book->setDate($_POST['date']);
+
+        $conn->prepare("INSERT INTO books (author, title, description, pages, date) VALUES ()");
+
+
 
 
 
